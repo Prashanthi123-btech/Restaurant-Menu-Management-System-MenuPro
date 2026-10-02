@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MenuPro | Restaurant Menu Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><span class="brand-icon">🍽</span><div><b>MenuPro</b><small>Restaurant Manager</small></div></div>
+    <nav>
+      <button class="nav-link active" data-page="dashboard">▦ <span>Dashboard</span></button>
+      <button class="nav-link" data-page="categories">▤ <span>Categories</span></button>
+      <button class="nav-link" data-page="items">☷ <span>Menu Items</span></button>
+      <button class="nav-link" data-page="digital">◉ <span>Digital Menu</span></button>
+      <button class="nav-link" data-page="pricing">₹ <span>Pricing</span></button>
+      <button class="nav-link" data-page="inventory">▣ <span>Inventory</span></button>
+      <button class="nav-link" data-page="analytics">▥ <span>Analytics</span></button>
+      <button class="nav-link" data-page="reports">▤ <span>Reports</span></button>
+    </nav>
+    <div class="sidebar-bottom"><button class="nav-link" data-page="settings">⚙ <span>Settings</span></button></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="hamburger" id="hamburger">☰</button>
+      <div class="search"><span>⌕</span><input id="globalSearch" placeholder="Search menu items..."></div>
+      <div class="top-actions"><button class="icon-btn" onclick="toggleTheme()">☾</button><button class="profile" onclick="showPage('settings')"><span>MP</span><div><b>Admin User</b><small>Administrator</small></div></button></div>
+    </header>
+
+    <section id="dashboard" class="page active">
+      <div class="page-head"><div><h1>Good evening, Admin</h1><p>Here’s what’s happening with your menu today.</p></div><button class="btn primary" onclick="openItemModal()">＋ Add Menu Item</button></div>
+      <div class="stats">
+        <div class="stat-card"><div class="stat-icon">☷</div><div><span>Total Items</span><strong id="statItems">0</strong><small>↑ 8% this month</small></div></div>
+        <div class="stat-card"><div class="stat-icon">▤</div><div><span>Categories</span><strong id="statCategories">0</strong><small>Across your menu</small></div></div>
+        <div class="stat-card"><div class="stat-icon">★</div><div><span>Popular Items</span><strong>12</strong><small>Based on orders</small></div></div>
+        <div class="stat-card alert"><div class="stat-icon">!</div><div><span>Low Stock</span><strong id="statLow">0</strong><small>Need attention</small></div></div>
+      </div>
+      <div class="grid two">
+        <div class="card"><div class="card-head"><h2>Menu Performance</h2><select id="chartPeriod"><option>Last 7 days</option><option>Last 30 days</option></select></div><canvas id="salesChart"></canvas></div>
+        <div class="card"><div class="card-head"><h2>Popular Items</h2><button class="text-btn" onclick="showPage('analytics')">View analytics →</button></div><div id="popularList"></div></div>
+      </div>
+      <div class="card"><div class="card-head"><h2>Inventory Alerts</h2><button class="text-btn" onclick="showPage('inventory')">View inventory →</button></div><div id="dashboardInventory"></div></div>
+    </section>
+
+    <section id="categories" class="page">
+      <div class="page-head"><div><h1>Categories</h1><p>Organize your restaurant menu.</p></div><button class="btn primary" onclick="openCategoryModal()">＋ Add Category</button></div>
+      <div class="category-grid" id="categoryGrid"></div>
+    </section>
+
+    <section id="items" class="page">
+      <div class="page-head"><div><h1>Menu Items</h1><p>Create and manage your dishes.</p></div><button class="btn primary" onclick="openItemModal()">＋ Add Menu Item</button></div>
+      <div class="toolbar"><input id="itemSearch" placeholder="Search items..." oninput="renderItems()"><select id="itemCategory" onchange="renderItems()"><option value="">All Categories</option></select><select id="itemStatus" onchange="renderItems()"><option value="">All Status</option><option>Available</option><option>Limited Stock</option><option>Out of Stock</option><option>New Item</option></select></div>
+      <div class="table-wrap"><table><thead><tr><th>Item</th><th>Category</th><th>Price</th><th>Tags</th><th>Status</th><th>Actions</th></tr></thead><tbody id="itemsTable"></tbody></table></div>
+    </section>
+
+    <section id="digital" class="page">
+      <div class="page-head"><div><h1>Digital Menu</h1><p>Customer-facing restaurant menu.</p></div><button class="btn outline" onclick="window.print()">⎙ Print Menu</button></div>
+      <div class="digital-header"><span>✦ TODAY'S MENU</span><h2>Fresh. Delicious. Made for you.</h2><p>Explore our chef-curated selection.</p></div>
+      <div class="digital-tabs" id="digitalTabs"></div>
+      <div class="digital-grid" id="digitalGrid"></div>
+    </section>
+
+    <section id="pricing" class="page">
+      <div class="page-head"><div><h1>Pricing Management</h1><p>Manage prices, offers and discounts.</p></div><button class="btn primary" onclick="savePrices()">Save Changes</button></div>
+      <div class="card"><div class="table-wrap"><table><thead><tr><th>Item</th><th>Current Price</th><th>Discount %</th><th>Offer Price</th></tr></thead><tbody id="pricingTable"></tbody></table></div></div>
+    </section>
+
+    <section id="inventory" class="page">
+      <div class="page-head"><div><h1>Inventory Tracking</h1><p>Monitor ingredients and stock levels.</p></div><button class="btn primary" onclick="addIngredient()">＋ Add Ingredient</button></div>
+      <div class="inventory-grid" id="inventoryGrid"></div>
+    </section>
+
+    <section id="analytics" class="page">
+      <div class="page-head"><div><h1>Menu Analytics</h1><p>Understand your menu performance.</p></div></div>
+      <div class="stats"><div class="stat-card"><div class="stat-icon">₹</div><div><span>Menu Revenue</span><strong>₹1.84L</strong><small>↑ 14.2%</small></div></div><div class="stat-card"><div class="stat-icon">★</div><div><span>Avg. Item Rating</span><strong>4.7</strong><small>From 2,480 reviews</small></div></div><div class="stat-card"><div class="stat-icon">◷</div><div><span>Avg. Order Value</span><strong>₹684</strong><small>↑ 6.8%</small></div></div></div>
+      <div class="grid two"><div class="card"><div class="card-head"><h2>Sales Trend</h2></div><canvas id="analyticsChart"></canvas></div><div class="card"><div class="card-head"><h2>Category Performance</h2></div><canvas id="categoryChart"></canvas></div></div>
+    </section>
+
+    <section id="reports" class="page">
+      <div class="page-head"><div><h1>Reports</h1><p>Generate useful menu and inventory reports.</p></div><button class="btn primary" onclick="window.print()">⎙ Print Report</button></div>
+      <div class="report-grid"><div class="report-card"><span>☷</span><h3>Menu Report</h3><p>Complete menu item and category overview.</p><button class="btn outline" onclick="downloadReport('menu')">Download CSV</button></div><div class="report-card"><span>▣</span><h3>Inventory Report</h3><p>Stock levels and low-stock ingredients.</p><button class="btn outline" onclick="downloadReport('inventory')">Download CSV</button></div><div class="report-card"><span>₹</span><h3>Pricing Report</h3><p>Current prices and discount offers.</p><button class="btn outline" onclick="downloadReport('pricing')">Download CSV</button></div></div>
+    </section>
+
+    <section id="settings" class="page">
+      <div class="page-head"><div><h1>Settings</h1><p>Manage your MenuPro preferences.</p></div></div>
+      <div class="card settings-card"><h2>Account</h2><label>Restaurant Name<input value="The Rose Kitchen"></label><label>Admin Email<input value="admin@rose-kitchen.com"></label><label>Role<select><option>Administrator</option><option>Manager</option><option>Staff</option></select></label><button class="btn primary" onclick="toast('Settings saved successfully')">Save Settings</button></div>
+    </section>
+  </main>
+</div>
+
+<div class="modal" id="itemModal"><div class="modal-box"><div class="modal-head"><h2 id="itemModalTitle">Add Menu Item</h2><button onclick="closeModal('itemModal')">×</button></div><form id="itemForm"><input type="hidden" id="editItemId"><label>Item Name<input id="itemName" required placeholder="e.g. Paneer Tikka"></label><label>Description<textarea id="itemDesc" required placeholder="Short description"></textarea></label><div class="form-row"><label>Price (₹)<input id="itemPrice" type="number" min="0" required></label><label>Category<select id="formCategory" required></select></label></div><label>Dietary Tags<input id="itemTags" placeholder="Vegetarian, Spicy"></label><label>Status<select id="formStatus"><option>Available</option><option>Limited Stock</option><option>Out of Stock</option><option>New Item</option></select></label><label>Image URL<input id="itemImage" placeholder="https://..."></label><div class="modal-actions"><button type="button" class="btn outline" onclick="closeModal('itemModal')">Cancel</button><button class="btn primary">Save Item</button></div></form></div></div>
+<div class="modal" id="categoryModal"><div class="modal-box small"><div class="modal-head"><h2>Add Category</h2><button onclick="closeModal('categoryModal')">×</button></div><form id="categoryForm"><label>Category Name<input id="categoryName" required placeholder="e.g. Breakfast"></label><label>Icon<input id="categoryIcon" value="🍽️" maxlength="2"></label><div class="modal-actions"><button type="button" class="btn outline" onclick="closeModal('categoryModal')">Cancel</button><button class="btn primary">Add Category</button></div></form></div></div>
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
