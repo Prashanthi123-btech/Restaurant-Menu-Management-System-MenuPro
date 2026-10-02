@@ -1,0 +1,193 @@
+# Restaurant Menu Management System – MenuPro
+
+A modern and responsive **Restaurant Menu Management System** built using HTML5, CSS3, and JavaScript. The system helps restaurant staff manage menu items, categories, pricing, inventory, and menu analytics through an easy-to-use dashboard.
+
+## Project Overview
+
+**MenuPro** is a frontend web application developed as part of a Web Development Internship task. It provides a digital platform for managing restaurant menus and displaying menu information to customers.
+
+The project uses JavaScript arrays, objects, and LocalStorage for data management without requiring a backend database.
+
+## Features
+
+### Dashboard
+
+* Total menu item count
+* Category statistics
+* Popular menu items
+* Inventory alerts
+* Menu overview
+
+### Category Management
+
+* Add categories
+* Delete categories
+* Manage restaurant food categories
+* Categories include:
+
+  * Appetizers
+  * Soups & Salads
+  * Main Course
+  * Pizzas
+  * Burgers
+  * Desserts
+  * Beverages
+  * Specials
+
+### Menu Item Management
+
+* Add menu items
+* Edit menu items
+* Delete menu items
+* Add item description
+* Set price
+* Select category
+* Add dietary tags
+* Set item availability status
+* Add food images
+
+### Digital Menu
+
+* Customer-friendly menu display
+* Category filtering
+* Food images
+* Prices
+* Descriptions
+* Dietary information
+
+### Pricing Management
+
+* Manage item prices
+* Apply discounts
+* Calculate special offer prices
+
+### Inventory Management
+
+* Add ingredients
+* Track stock
+* Identify low-stock ingredients
+* Display inventory information
+
+### Dietary Tags
+
+The system supports:
+
+* Vegetarian
+* Non-Vegetarian
+* Vegan
+* Gluten-Free
+* Dairy-Free
+* Spicy
+* Chef's Special
+
+### Item Status
+
+Menu items can have the following statuses:
+
+* Available
+* Limited Stock
+* Out of Stock
+* New Item
+
+### Analytics
+
+* Menu performance overview
+* Popular item analysis
+* Sales trend visualization
+* Chart-based statistics
+
+### Reports
+
+* Generate menu reports
+* Export report data as CSV
+
+### Additional Features
+
+* Responsive design
+* Search and filtering
+* Dark mode
+* LocalStorage data persistence
+* Mobile-friendly navigation
+
+## Technologies Used
+
+* **HTML5** – Website structure
+* **CSS3** – Styling and responsive design
+* **JavaScript** – Functionality and data management
+* **Chart.js** – Analytics charts
+* **LocalStorage** – Browser-based data storage
+
+## Project Structure
+
+```text
+MenuPro/
+│
+├── index.html
+├── style.css
+├── script.js
+├── README.md
+└── .gitignore
+```
+
+## Color Theme
+
+The project uses a modern restaurant-themed color palette:
+
+* Rose: `#E11D48`
+* White: `#FFFFFF`
+* Light Rose: `#FCE7F3`
+
+## How to Run the Project
+
+1. Download or clone the repository.
+
+2. Open the project folder.
+
+3. Open `index.html` in a web browser.
+
+4. The MenuPro dashboard will open.
+
+No backend server or database is required.
+
+## GitHub Setup
+
+Create a new GitHub repository and upload:
+
+```text
+index.html
+style.css
+script.js
+README.md
+.gitignore
+```
+
+Then commit and push the project to GitHub.
+
+## Future Enhancements
+
+The project can be extended with:
+
+* User login and registration
+* Admin, Manager, and Staff roles
+* Database integration
+* Menu versioning
+* PDF report generation
+* QR-code digital menu
+* Multi-language support
+* Daily specials
+* AI-based food recommendations
+* Online ordering and payment integration
+
+## Internship Task
+
+**Project:** Restaurant Menu Management System
+**Project Name:** MenuPro
+**Domain:** Restaurant & Hospitality
+**Technology:** HTML5, CSS3, JavaScript
+**Type:** Frontend Web Development Project
+
+## Author
+
+**C Madhav Prabhas**
+
+This project was developed for educational and internship purposes.
